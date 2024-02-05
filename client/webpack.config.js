@@ -28,10 +28,10 @@ module.exports = () => {
       }),
       // will minify the CSS and generate a file
       new MiniCssExtractPlugin(),
-      new InjectManifest({ 
+      ...(process.env.WEBPACK_WATCH === 'true' ? [] : [new InjectManifest({ 
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
-      }),
+      })]),
       // will generate a service-worker.js file in the build directory
       new WebpackPwaManifest({
         fingerprints: false,

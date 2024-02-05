@@ -16,6 +16,7 @@ export const putDb = async (content) => {
   const jate = await openDB('jate', 1); // open the database
   const tx = jate.transaction('jate', 'readwrite');// start a transaction
   const store = tx.objectStore('jate');// get the object store
+  // if ('id' in content) delete content.id; // ensure the content object doesn't include an id field
   await store.put(content);// add the content to the object store
   await tx.done;// complete the transaction
   console.log('content added to database');
@@ -30,4 +31,4 @@ export const getDb = async () => {
   return content; // return the content
 };
 
-initdb();
+initdb()
