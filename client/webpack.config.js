@@ -28,17 +28,17 @@ module.exports = () => {
       }),
       // will minify the CSS and generate a file
       new MiniCssExtractPlugin(),
-      ...(process.env.WEBPACK_WATCH === 'true' ? [] : [new InjectManifest({ 
+      new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
-      })]),
+      }),
       // will generate a service-worker.js file in the build directory
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
         name: "Just Another Text Editor",
         short_name: "J.A.T.E",
-        description: "text editor",
+        description: "offline text editor",
         background_color: "#225ca3",
         theme_color: "#225ca3",
         start_url: "/",
